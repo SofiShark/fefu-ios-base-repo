@@ -86,8 +86,8 @@ class ActivityController: UIViewController {
                         prevLocation = location
                     })
 
-                    return ActivityTableCellModel(distance: String(format: "%.2f", distance) + " км",
-                                                  duration: activity.startsAt.interval(activity.endsAt),
+                    return ActivityTableCellModel(distance: distance,
+                                                  duration: activity.startsAt.timeIntervalSince(activity.endsAt),
                                                   type: activity.activityType.name,
                                                   icon: image,
                                                   startDate: activity.startsAt,
@@ -102,7 +102,6 @@ class ActivityController: UIViewController {
                 self.tableData = grouppedActivities.map { (date, activities) in
                     return ActivitiesTableModel(date: date, activities: activities)
                 }
-                
                 self.reloadTable()
             }
         } reject: { error in
