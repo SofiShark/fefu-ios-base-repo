@@ -11,8 +11,8 @@ extension CDActivity {
     @NSManaged public var startDate: Date
     @NSManaged public var endDate: Date
     @NSManaged public var type: String
-    @NSManaged public var distance: String
-    @NSManaged public var duration: String
+    @NSManaged public var distance: Double
+    @NSManaged public var duration: Double
 }
 
 extension CDActivity : Identifiable {

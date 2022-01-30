@@ -1,6 +1,25 @@
 import Foundation
 
 extension Date {
+    static func fromString(stringFormat: String) -> Date? {
+        
+        let stringFormats = ["yyyy/MM/dd HH:mm", "yyyy/MM/dd"]
+        let formatter = DateFormatter()
+        
+        for format in stringFormats {
+            formatter.dateFormat = format
+            if let date: Date = formatter.date(from: stringFormat) {
+                return date
+            }
+        }
+        
+        return nil
+    }
+    
+    func shift(unit: Calendar.Component, value: Int) -> Date? {
+        return Calendar.current.date(byAdding: unit, value: value, to: self)
+    }
+
     func timeAgo(_ date: Date) -> String {
         let formatter = RelativeDateTimeFormatter()
         formatter.unitsStyle = .full

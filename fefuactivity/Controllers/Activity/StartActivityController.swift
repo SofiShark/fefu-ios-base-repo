@@ -88,6 +88,8 @@ class StartActivityController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tabBarController?.tabBar.isHidden = true
 
         proccessView.isHidden = true
         proccessView.layer.cornerRadius = 25
@@ -116,6 +118,10 @@ class StartActivityController: UIViewController {
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
     @IBAction func startHandler(_ sender: Any) {
         locationManager.startUpdatingLocation()
 
@@ -141,8 +147,8 @@ class StartActivityController: UIViewController {
 
         let coreData = FEFUCoreDataContainer.instance
         let activity = CDActivity(context: coreData.context)
-        activity.distance = distanceLabel.text!
-        activity.duration = activityDuration.duration()
+        activity.distance = distance
+        activity.duration = activityDuration
         activity.startDate = startDate
         activity.endDate = Date()
         activity.type = activityType?.name ?? ""

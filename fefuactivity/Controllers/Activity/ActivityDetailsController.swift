@@ -18,8 +18,8 @@ class ActivityDetailsController: UIViewController {
         
         self.title = model.type
         
-        distanceLabel.text = model.distance
-        durationLabel.text = model.duration
+        distanceLabel.text = model.formattedDistance()
+        durationLabel.text = model.formattedDuration()
         timeAgoLabel1.text = model.timeAgo()
         timeAgoLabel2.text = model.timeAgo()
         startStopTime.text =  "Старт: \(model.startTime()) • Финиш: \(model.endTime())"
